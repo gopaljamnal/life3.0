@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+.container {
+    padding: 2em;
+}
+
+.flash {
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.flash.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.posts .post {
+    border: 1px solid #ddd;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.posts .post img {
+    max-width: 100%;
+    height: auto;
+}
+
+.posts .post .post-date {
+    font-size: 0.8em;
+    color: #555;
+}
+
+.like-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.like-button:hover {
+    background-color: #45a049;
+}
+
+.more-content {
+    display: none;
+}
