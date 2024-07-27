@@ -1,5 +1,46 @@
-{% extends 'base.html' %}
-{% block content %}
-    <h1>About Me</h1>
-    <p>This is the about me page. You can add information about yourself here.</p>
-{% endblock %}
+<!--{% extends 'base.html' %}-->
+<!--{% block content %}-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic CV Template</title>
+
+      <link rel="stylesheet" href="/static/cvstyle.css">
+
+
+
+</head>
+<body>
+
+      <div class="container">
+        <header>
+            <h1>Gopal Jamnal</h1>
+            <p>AI Researcher | Software Developer | Data Scientist| DevOps Engineer | Cloud Data Engineer</p>
+        </header>
+        <<section class="profile">
+            <h2>Profile</h2>
+            <p>Data science engineer worked in industry and academia across europe and uk. I am passionate about
+learning new business operations and identifying business metrics to optimize data science technologies
+to deliver data-driven solutions. In addition, I place great emphasis on work ethics and value maintaining
+working relationships with stakeholders and helping junior staff to ensure project success.</p>
+        </section>
+        <section class="timeline">
+            <h2>Work Experience</h2>
+            <div id="timeline-container-work"></div>
+        </section>
+        <section class="timeline">
+            <h2>Education</h2>
+            <div id="timeline-container-education"></div>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='cvscript.js') }}"></script>
+</body>
+</html>
+
+
+<!--{% endblock %}-->
+
+

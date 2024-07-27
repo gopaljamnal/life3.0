@@ -10,19 +10,29 @@
 <body>
     <nav>
         <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('new_post') }}">New Post</a>
-        <a href="{{ url_for('contact') }}">Contact Me</a>
+         <a href="{{ url_for('contact') }}">Contact Me</a>
+               <a href="{{ url_for('new_post') }}">New Post</a>
         <a href="{{ url_for('about') }}">About Me</a>
     </nav>
     <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash {{ category }}">{{ message }}</div>
+        <div class="main-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+        <div class="sidebar">
+            <h2>Archive</h2>
+            <ul>
+                {% for post in posts %}
+                    <li><a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.title }}</a></li>
                 {% endfor %}
-            {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
+            </ul>
+        </div>
     </div>
 </body>
 </html>

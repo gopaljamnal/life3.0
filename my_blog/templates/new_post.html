@@ -8,11 +8,15 @@
         </div>
         <div>
             <label for="content">Content:</label>
-            <textarea id="content" name="content" required></textarea>
+            <textarea id="content" name="content" rows="10" required></textarea>
         </div>
         <div>
-            <label for="image">Upload Image:</label>
-            <input type="file" id="image" name="image">
+            <label for="date_time">Date and Time:</label>
+            <input type="datetime-local" id="date_time" name="date_time" required>
+        </div>
+        <div>
+            <label for="images">Upload Images:</label>
+            <input type="file" id="images" name="images" multiple>
         </div>
         <button type="submit">Submit</button>
     </form>
