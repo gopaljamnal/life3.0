@@ -100,7 +100,7 @@ def like_post(post_id):
     save_likes(likes)
     return jsonify({'likes': likes[str(post_id)]})
 
-
+# contact page
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
