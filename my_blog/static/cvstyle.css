@@ -35,12 +35,12 @@ header p {
 }
 
 section {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 section h2 {
     font-size: 2em;
-    color: #007bff;
+    color: black;
     border-bottom: 2px solid #007bff;
     padding-bottom: 5px;
 }
@@ -128,7 +128,7 @@ section h2 {
     width: 100%;
     background: black;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 5px;
     border-radius: 8px 8px 0 0;
     font-weight: bold;
     text-align: center;
@@ -137,9 +137,9 @@ section h2 {
 .timeline-content {
     flex: 3;
     background: #fff;
-    padding: 20px;
+    padding: 5px;
     border-radius: 0 0 8px 8px;
-    max-height: 100px;
+    max-height: 25px;
     overflow: hidden;
     transition: max-height 0.3s ease;
 }

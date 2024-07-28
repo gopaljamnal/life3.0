@@ -110,6 +110,13 @@ def contact():
 def about():
     return render_template('about.html')
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('q', '').lower()
+    posts = load_posts()
+    results = [post for post in posts if query in post['title'].lower() or query in post['content'].lower()]
+    return render_template('search.html', posts=results, query=query)
+
 
 
 if __name__ == '__main__':

@@ -6,14 +6,22 @@
     <title>My Blog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For font-awesome icons -->
 </head>
 <body>
     <nav>
         <a href="{{ url_for('index') }}">Home</a>
-         <a href="{{ url_for('contact') }}">Contact Me</a>
-               <a href="{{ url_for('new_post') }}">New Post</a>
+        <a href="{{ url_for('new_post') }}">New Post</a>
+        <a href="{{ url_for('contact') }}">Contact Me</a>
         <a href="{{ url_for('about') }}">About Me</a>
+        <form action="{{ url_for('search') }}" method="get" class="search-form">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
     </nav>
+<!--    <div class="profile-picture">-->
+<!--        <img src="/static/uploads/profile.jpg" alt="Profile Picture">-->
+<!--    </div>-->
     <div class="container">
         <div class="main-content">
             {% with messages = get_flashed_messages(with_categories=true) %}
