@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>{% block title %}My Blog{% endblock %}</title>
+    <meta name="description" content="{% block description %}A blog about Explainable AI, Machine Learning, Data Science, and AI.{% endblock %}">
+    <meta name="keywords" content="Explainable AI, Machine Learning, Data Science, AI, Blog">
+    <meta name="Gopal Jamnal" content="Gopal Jamnal">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For font-awesome icons -->
@@ -19,9 +22,10 @@
             <button type="submit">Search</button>
         </form>
     </nav>
-<!--    <div class="profile-picture">-->
-<!--        <img src="/static/uploads/profile.jpg" alt="Profile Picture">-->
-<!--    </div>-->
+
+    <!-- Header Section for Profile Picture (Only on Index Page) -->
+    {% block header %}{% endblock %}
+
     <div class="container">
         <div class="main-content">
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -42,5 +46,10 @@
             </ul>
         </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Jupiter All rights reserved.</p>
+    </footer>
 </body>
 </html>

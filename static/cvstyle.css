@@ -7,12 +7,12 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background: #ffeab6;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    /*border-radius: 10px;*/
 }
 
 header {
@@ -27,11 +27,12 @@ header {
 header h1 {
     margin: 0;
     font-size: 2.5em;
+    color: #333;
 }
 
 header p {
-    margin: 10px 0 0;
     font-size: 1.2em;
+    color: #777;
 }
 
 section {
@@ -45,16 +46,22 @@ section h2 {
     padding-bottom: 5px;
 }
 
-.profile {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+.profile, .timeline {
+    margin-bottom: 20px;
 }
 
-.profile p {
-    font-size: 1.1em;
+.profile h2, .timeline h2 {
+    font-size: 1.8em;
+    color: #333;
+    border-bottom: 2px solid #f4f4f4;
+    padding-bottom: 5px;
 }
 
+
+.profile p, .timeline p {
+    font-size: 1em;
+    color: #555;
+}
 .timeline {
     position: relative;
     padding: 20px 0;
@@ -162,4 +169,31 @@ section h2 {
 .timeline-content ul li {
     margin-bottom: 10px;
     color: #555;
+}
+
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header p {
+        font-size: 0.9em;
+    }
+
+    .profile h2, .timeline h2 {
+        font-size: 1.2em;
+    }
+
+    .profile p, .timeline p {
+        font-size: 0.9em;
+    }
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
 }

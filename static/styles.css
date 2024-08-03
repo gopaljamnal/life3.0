@@ -10,9 +10,7 @@ nav {
     color: Yellow;
     padding: 1em;
     text-align: center;
-    /*display: flex;*/
-    /*justify-content: space-between;*/
-    /*align-items: center;*/
+
 }
 
 nav a {
@@ -23,12 +21,13 @@ nav a {
 
 .container {
     display: flex;
-    padding: 5em;
+    flex-direction: row;
+    margin: 20px;
 }
 
 .main-content {
     flex: 3;
-    margin-right: 2em;
+    padding-right: 20px;
 }
 
 .sidebar {
@@ -139,33 +138,94 @@ view-button {
     background-color: #45a049;
 }
 
-/*.cropped {*/
-/*    width: auto; !* width of container *!*/
-/*    max-height: 500px; !* height of container *!*/
-/*    overflow: hidden;*/
-/*    border: 5px solid black;*/
-/*    object-fit: fill;*/
-/*}*/
-
-.profile-picture img {
-    margin: -100px 0px 0px -600px;
-}
-
-.profile-picture {
+footer {
+    background-color: #333;
+    color: #fff;
     text-align: center;
-    margin-top: 0;
-    overflow: hidden;
-    object-fit: cover;
+    padding: 10px;
     width: 100%;
-    height:auto;
-
 }
 
-/*.profile-picture img {*/
-/*    width: auto;*/
-/*    height: auto;*/
-/*    !*border-radius: 100%;*!*/
-/*    object-fit: cover;*/
-/*    overflow: hidden;*/
-/*     !*margin: -100px 0px 0px -10px;*!*/
-/*}*/
+/* Header Image */
+.header-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 10%;
+    object-fit: fill;
+    border-radius:0%;
+}
+
+/* Post Styles */
+.post {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.post-content {
+    margin-bottom: 10px;
+}
+
+.post-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+    border: none;
+}
+
+.view-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: blue;
+}
+
+/* Flash Message Styles */
+.flash {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.flash-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+}
+
+.flash-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.flash-warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+}
+
+.flash-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding-right: 0;
+    }
+}
+

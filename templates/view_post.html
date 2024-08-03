@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block description %}{{ post.summary }}{% endblock %}
+
 {% block content %}
-    <div class="post">
-        <h2>{{ post.title }}</h2>
+    <article>
+        <h1>{{ post.title }}</h1>
         <p class="post-date">{{ post.date }}</p>
-        <p>{{ post.content }}</p>
+        <div class="post-content">
+            {{ post.content }}
+        </div>
         {% if post.image_urls %}
-            {% for image_url in post.image_urls %}
-                <img src="{{ image_url }}" alt="Post Image">
-            {% endfor %}
+            <div class="post-images">
+                {% for image_url in post.image_urls %}
+                    <img src="{{ image_url }}" alt="Post Image" class="responsive-image">
+                {% endfor %}
+            </div>
         {% endif %}
-    </div>
+    </article>
 {% endblock %}

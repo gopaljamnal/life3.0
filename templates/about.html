@@ -1,19 +1,27 @@
-<!--{% extends 'base.html' %}-->
-<!--{% block content %}-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+ <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic CV Template</title>
+    <meta name="description" content="{% block description %}A blog about Explainable AI, Machine Learning, Data Science, and AI.{% endblock %}">
+    <meta name="keywords" content="Explainable AI, Machine Learning, Data Science, AI, Blog">
+    <meta name="Gopal Jamnal" content="Gopal Jamnal">
 
       <link rel="stylesheet" href="/static/cvstyle.css">
 
 
-
 </head>
 <body>
+  <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('new_post') }}">New Post</a>
+        <a href="{{ url_for('contact') }}">Contact Me</a>
+        <a href="{{ url_for('about') }}">About Me</a>
+        <form action="{{ url_for('search') }}" method="get" class="search-form">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </nav>
 
       <div class="container">
         <header>
@@ -37,10 +45,14 @@ working relationships with stakeholders and helping junior staff to ensure proje
         </section>
     </div>
     <script src="{{ url_for('static', filename='cvscript.js') }}"></script>
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </footer>
 </body>
 </html>
 
 
-<!--{% endblock %}-->
+
 
 

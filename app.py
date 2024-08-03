@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 import json
 from datetime import datetime
+from lxml import etree
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -117,7 +118,62 @@ def search():
     results = [post for post in posts if query in post['title'].lower() or query in post['content'].lower()]
     return render_template('search.html', posts=results, query=query)
 
+# search engine optimization-------------------------------
 
+
+@app.route('/sitemap.xml', methods=['GET'])
+def serve_sitemap():
+    return app.send_static_file('sitemap.xml')
+
+
+def generate_sitemap():
+    with app.test_request_context():
+        posts = load_posts()
+
+        urlset = etree.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+
+        # Add static pages
+        static_urls = [
+            {'url': url_for('index', _external=True), 'last_modified': datetime.now().strftime('%Y-%m-%d')},
+            {'url': url_for('about', _external=True), 'last_modified': datetime.now().strftime('%Y-%m-%d')},
+            {'url': url_for('contact', _external=True), 'last_modified': datetime.now().strftime('%Y-%m-%d')}
+        ]
+
+        for static_url in static_urls:
+            url = etree.SubElement(urlset, "url")
+            loc = etree.SubElement(url, "loc")
+            loc.text = static_url['url']
+
+            lastmod = etree.SubElement(url, "lastmod")
+            lastmod.text = static_url['last_modified']
+
+            changefreq = etree.SubElement(url, "changefreq")
+            changefreq.text = "monthly"
+
+            priority = etree.SubElement(url, "priority")
+            priority.text = "0.8"
+
+        # Add post URLs
+        for post in posts:
+            url = etree.SubElement(urlset, "url")
+            loc = etree.SubElement(url, "loc")
+            loc.text = url_for('view_post', post_id=post['id'], _external=True)
+
+            lastmod = etree.SubElement(url, "lastmod")
+            lastmod.text = post['date']
+
+            changefreq = etree.SubElement(url, "changefreq")
+            changefreq.text = "weekly"
+
+            priority = etree.SubElement(url, "priority")
+            priority.text = "0.5"
+
+        sitemap = etree.tostring(urlset, pretty_print=True, xml_declaration=True, encoding="UTF-8")
+
+        with open("static/sitemap.xml", "wb") as f:
+            f.write(sitemap)
 
 if __name__ == '__main__':
+    with app.app_context():
+        generate_sitemap()
     app.run(debug=True)
