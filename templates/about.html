@@ -6,34 +6,36 @@
     <meta name="description" content="{% block description %}A blog about Explainable AI, Machine Learning, Data Science, and AI.{% endblock %}">
     <meta name="keywords" content="Explainable AI, Machine Learning, Data Science, AI, Blog">
     <meta name="Gopal Jamnal" content="Gopal Jamnal">
-
-      <link rel="stylesheet" href="/static/cvstyle.css">
-
-
+    <link rel="stylesheet" href="/static/cvstyle.css">
+    <title></title>
 </head>
 <body>
-  <nav>
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('new_post') }}">New Post</a>
-        <a href="{{ url_for('contact') }}">Contact Me</a>
-        <a href="{{ url_for('about') }}">About Me</a>
-        <form action="{{ url_for('search') }}" method="get" class="search-form">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
-    </nav>
+<!--  <nav>-->
+<!--        <a href="{{ url_for('index') }}">Home</a>-->
+<!--        <a href="{{ url_for('new_post') }}">New Post</a>-->
+<!--        <a href="{{ url_for('contact') }}">Contact Me</a>-->
+<!--        <a href="{{ url_for('about') }}">About Me</a>-->
+<!--        <form action="{{ url_for('search') }}" method="get" class="search-form">-->
+<!--            <input type="text" name="q" placeholder="Search...">-->
+<!--            <button type="submit">Search</button>-->
+<!--        </form>-->
+<!--    </nav>-->
 
-      <div class="container">
+  <div class="container">
         <header>
             <h1>Gopal Jamnal</h1>
-            <p>AI Researcher | Software Developer | Data Scientist| DevOps Engineer | Cloud Data Engineer</p>
+            <p>AI Researcher | Software Developer | Data Scientist| DevOps Engineer | Cloud Data Engineer </p>
         </header>
+
         <<section class="profile">
+          <p> <b>Tech stack: </b>Python, R, React, Node.js, TypeScript, MongoDB, PostgresDB, Sklearn, Pytoruch, BERT, LLM, CI/CD, Docker, Jenkins,
+          Azure, AWS, Heroku, Rapid Miner, Tablueu, PowerBI, PL/SQL, D3.js, Javascript, CSS
+          </p>
             <h2>Profile</h2>
             <p>Data science engineer worked in industry and academia across europe and uk. I am passionate about
-learning new business operations and identifying business metrics to optimize data science technologies
-to deliver data-driven solutions. In addition, I place great emphasis on work ethics and value maintaining
-working relationships with stakeholders and helping junior staff to ensure project success.</p>
+                learning new business operations and identifying business metrics to optimize data science technologies
+                to deliver data-driven solutions. In addition, I place great emphasis on work ethics and value maintaining
+                working relationships with stakeholders and helping junior staff to ensure project success.</p>
         </section>
         <section class="timeline">
             <h2>Work Experience</h2>
@@ -43,12 +45,29 @@ working relationships with stakeholders and helping junior staff to ensure proje
             <h2>Education</h2>
             <div id="timeline-container-education"></div>
         </section>
-    </div>
+
+          <h2> Publications</h2>
+          <ul>
+              <li>Jamnal, G. and Liu, X., 2017, April. A Cognitive-IoE Approach to Ambient-intelligent Smart Home. In International Conference on Internet of Things, Big Data and Security (Vol. 2, pp. 302-308). SCITEPRESS.
+              </li>
+              <li>Jamnal, G.S., 2023, October. Instils Trust in Random Forest Predictions. In 2023 IEEE 10th International Conference on Data Science and Advanced Analytics (DSAA) (pp. 1-9). IEEE.
+              </li>
+              <li>Ramachandran, M. and Jamnal, G.S., 2014, August. Developing reusable. NET software components. In 2014 Science and Information Conference (pp. 991-996). IEEE.
+              </li>
+              <li>Jamnal, G.S., Liu, X. and Fan, L., 2017. Home automation: HMM based fuzzy rule engine for Ambient intelligent smart space. In SEKE (pp. 624-625).
+              </li>
+              <li>Jamnal, G.S., Liu, X., Fan, L. and Ramachandran, M., 2017. Cognitive Internet of Everything (CIoE): State of the Art and Approaches. Emerging Trends and Applications of the Internet of Things, pp.277-309.
+              </li>
+          </ul>
+  </div>
+
     <script src="{{ url_for('static', filename='cvscript.js') }}"></script>
     <!-- Footer Section -->
+
     <footer>
-        <p>&copy; 2024 My Blog. All rights reserved.</p>
+        <p align="center">&copy; 2024 GJ technologies. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
 

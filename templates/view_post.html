@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
-
-{% block title %}{{ post.title }}{% endblock %}
-{% block description %}{{ post.summary }}{% endblock %}
-
 {% block content %}
-    <article>
+    <div class="post" id="post-{{ post.id }}">
         <h1>{{ post.title }}</h1>
         <p class="post-date">{{ post.date }}</p>
-        <div class="post-content">
-            {{ post.content }}
-        </div>
+        <p>{{ post.content }}</p>
         {% if post.image_urls %}
             <div class="post-images">
                 {% for image_url in post.image_urls %}
-                    <img src="{{ image_url }}" alt="Post Image" class="responsive-image">
+                    <img src="{{ image_url }}" alt="Post Image">
                 {% endfor %}
             </div>
         {% endif %}
-    </article>
+        <button class="like-button" data-post-id="{{ post.id }}">
+            <span class="like-count" id="like-count-{{ post.id }}">{{ post.get('likes', 0) }}</span> <i class="fas fa-thumbs-up"></i>
+        </button>
+    </div>
 {% endblock %}

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block title %}Home - My Blog{% endblock %}
 
 {% block header %}
@@ -10,12 +9,12 @@
 
 {% block content %}
     <h1>Welcome to My Blog</h1>
-
     <div class="posts">
         {% for post in posts %}
             <div class="post" id="post-{{ post.id }}">
                 <div class="post-content">
                     <h2>{{ post.title }}</h2>
+                    <p class="post-id">Post ID: {{ post.id }}</p> <!-- Display post ID -->
                     <p class="post-date">{{ post.date }}</p>
                     <p>
                         {% if post.content|length > 100 %}
@@ -25,29 +24,31 @@
                             {{ post.content }}
                         {% endif %}
                     </p>
+    <!--                <a href="{{ url_for('edit_post', post_id=post.id) }}">Edit</a> &lt;!&ndash; Edit button &ndash;&gt;-->
+                    <button class="like-button" data-post-id="{{ post.id }}">
+                            <span class="like-count" id="like-count-{{ post.id }}">{{ post.get('likes', 0) }}</span> <i class="fas fa-thumbs-up"></i>
+                        </button>
                 </div>
                 {% if post.image_urls %}
                     <div class="post-images">
                         {% for image_url in post.image_urls %}
-                            <img src="{{ image_url }}" alt="Post Image" class="responsive-image">
+                            <img src="{{ image_url }}" alt="Post Image">
                         {% endfor %}
                     </div>
                 {% endif %}
-                <button class="view-button" data-post-id="{{ post.id }}">
-                    <span class="view-count" id="view-count-{{ post.id }}">{{ post.get('views', 0) }}</span> <i class="fas fa-eye"></i>
-                </button>
             </div>
         {% endfor %}
     </div>
-    <script>
-        $(document).ready(function(){
-            $('.view-button').click(function(){
-                var postId = $(this).data('post-id');
-                $.post('/view/' + postId, function(data){
-                    $('#view-count-' + postId).text(data.views);
-                });
-                $(this).prop('disabled', true);
-            });
+<script>
+$(document).ready(function(){
+    $('.like-button').click(function(){
+        var postId = $(this).data('post-id');
+        $.post('/like/' + postId, function(data){
+            $('#like-count-' + postId).text(data.likes);
         });
-    </script>
+        $(this).prop('disabled', true); // Disable the button after clicking
+    });
+});
+
+</script>
 {% endblock %}

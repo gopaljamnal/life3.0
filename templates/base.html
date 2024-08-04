@@ -14,9 +14,14 @@
 <body>
     <nav>
         <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('new_post') }}">New Post</a>
-        <a href="{{ url_for('contact') }}">Contact Me</a>
-        <a href="{{ url_for('about') }}">About Me</a>
+        {% if session ['logged_in']%}
+            <a href="{{ url_for('new_post') }}">New Post</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {%else %}
+             <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a href="{{ url_for('about') }}">About</a>
         <form action="{{ url_for('search') }}" method="get" class="search-form">
             <input type="text" name="q" placeholder="Search...">
             <button type="submit">Search</button>
@@ -49,7 +54,7 @@
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 Jupiter All rights reserved.</p>
+        <p>&copy; 2024 GJ technologies Pvt Ltd. All rights reserved.</p>
     </footer>
 </body>
 </html>

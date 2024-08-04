@@ -1,7 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fbf7f7;
-    color: black;
+    background-color: white;
+    color: darkslategrey;
     margin: 0;
     padding: 0;
 }
@@ -10,15 +10,14 @@ body {
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
-    background: #ffeab6;
+    background: bisque;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /*border-radius: 10px;*/
 }
 
 header {
     text-align: center;
     margin-bottom: 40px;
-    background: #f0c15a;
+    background: #F6E96B;
     color: black;
     padding: 20px;
     border-radius: 10px 10px 0 0;
@@ -52,7 +51,7 @@ section h2 {
 
 .profile h2, .timeline h2 {
     font-size: 1.8em;
-    color: #333;
+    color: black;
     border-bottom: 2px solid #f4f4f4;
     padding-bottom: 5px;
 }
@@ -60,7 +59,7 @@ section h2 {
 
 .profile p, .timeline p {
     font-size: 1em;
-    color: #555;
+    color: #333;
 }
 .timeline {
     position: relative;
@@ -117,7 +116,7 @@ section h2 {
     top: 20px;
     width: 10px;
     height: 10px;
-    background: #007bff;
+    background: black;
     border: 2px solid #fff;
     border-radius: 50%;
 }
@@ -133,8 +132,8 @@ section h2 {
 .timeline-date {
     flex: 1;
     width: 100%;
-    background: black;
-    color: #fff;
+    background: #BEDC74;
+    color: black;
     padding: 5px 5px;
     border-radius: 8px 8px 0 0;
     font-weight: bold;
@@ -144,7 +143,7 @@ section h2 {
 .timeline-content {
     flex: 3;
     background: #fff;
-    padding: 5px;
+    padding: 2px;
     border-radius: 0 0 8px 8px;
     max-height: 25px;
     overflow: hidden;
@@ -164,17 +163,18 @@ section h2 {
 .timeline-content ul {
     padding-left: 20px;
     list-style: disc;
+    color: black;
 }
 
 .timeline-content ul li {
     margin-bottom: 10px;
-    color: #555;
+    color: black;
 }
 
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.8em;
+        font-size: 1.0em;
     }
 
     header p {
@@ -182,7 +182,7 @@ section h2 {
     }
 
     .profile h2, .timeline h2 {
-        font-size: 1.2em;
+        font-size: 1.0em;
     }
 
     .profile p, .timeline p {
@@ -190,8 +190,8 @@ section h2 {
     }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: black;
+    color: black;
     text-align: center;
     padding: 10px;
     width: 100%;

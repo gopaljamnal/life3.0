@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 from werkzeug.utils import secure_filename
 import os
 import json
@@ -11,6 +11,7 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads/'
 POSTS_FILE = 'posts.json'
 LIKES_FILE = 'likes.json'
 
+ADMIN_PASSWORD = 'jupiter2024'
 
 def ensure_upload_folder_exists():
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
@@ -55,6 +56,9 @@ def index():
 
 @app.route('/new', methods=['GET', 'POST'])
 def new_post():
+    if 'logged_in' not in session or not session['logged_in']:
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
@@ -75,7 +79,8 @@ def new_post():
             'content': content,
             'image_urls': image_urls,
             'date': post_date,
-            'id': len(posts) + 1  # Simple ID for each post
+            'id': len(posts) + 1,  # Simple ID for each post
+            'likes': 0  # Initialize likes for each post
         })
         save_posts(posts)
 
@@ -93,13 +98,13 @@ def view_post(post_id):
 
 @app.route('/like/<int:post_id>', methods=['POST'])
 def like_post(post_id):
-    likes = load_likes()
-    if str(post_id) in likes:
-        likes[str(post_id)] += 1
-    else:
-        likes[str(post_id)] = 1
-    save_likes(likes)
-    return jsonify({'likes': likes[str(post_id)]})
+    posts = load_posts()
+    post = next((post for post in posts if post['id'] == post_id), None)
+    if post:
+        post['likes'] = post.get('likes', 0) + 1
+        save_posts(posts)
+        return jsonify({'likes': post['likes']})
+    return jsonify({'error': 'Post not found'}), 404
 
 # contact page
 @app.route('/contact')
@@ -117,6 +122,64 @@ def search():
     posts = load_posts()
     results = [post for post in posts if query in post['title'].lower() or query in post['content'].lower()]
     return render_template('search.html', posts=results, query=query)
+
+
+@app.route('/edit/<int:post_id>', methods=['GET', 'POST'])
+def edit_post(post_id):
+    if 'logged_in' not in session:
+        return redirect(url_for('login'))
+
+    posts = load_posts()
+    post = next((post for post in posts if post['id'] == post_id), None)
+
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        post_date = request.form['date_time']
+        images = request.files.getlist('images')
+        image_urls = post['image_urls']
+
+        if images:
+            ensure_upload_folder_exists()
+            image_urls = []
+            for image in images:
+                if image and image.filename != '':
+                    filename = secure_filename(image.filename)
+                    image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    image_urls.append(url_for('static', filename=f'uploads/{filename}'))
+
+        post.update({
+            'title': title,
+            'content': content,
+            'image_urls': image_urls,
+            'date': post_date
+        })
+        save_posts(posts)
+
+        # Generate sitemap whenever a post is edited
+        generate_sitemap()
+
+        flash('Post updated!', 'success')
+        return redirect(url_for('view_post', post_id=post_id))
+
+    return render_template('edit_post.html', post=post)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        password = request.form['password']
+        if password == ADMIN_PASSWORD:
+            session['logged_in'] = True
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid password', 'danger')
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('index'))
 
 # search engine optimization-------------------------------
 
